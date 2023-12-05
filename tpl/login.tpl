@@ -64,8 +64,8 @@
 
 				{if $ShowUsernamePrompt &&  $ShowPasswordPrompt}
 				<div class="col-xs-12">
-					<button type="submit" class="btn btn-large btn-primary  btn-block" name="{Actions::LOGIN}"
-							value="submit">{translate key='LogIn'}</button>
+					<button type="submit" class="btn btn-large btn-primary btn-block text-uppercase" name="{Actions::LOGIN}"
+							value="submit"><i class="fa-solid fa-right-to-bracket"></i> {translate key='LogIn'}</button>
 					<input type="hidden" {formname key=RESUME} value="{$ResumeUrl}"/>
 				</div>
 				{/if}
@@ -118,27 +118,35 @@
 						</div>
 					{/if}
 				</section>
-			</div>
-			<div id="login-footer" class="col-xs-12">
-				{if $ShowForgotPasswordPrompt}
-					<div id="forgot-password" class="col-xs-12 col-sm-6">
-						<a href="{$ForgotPasswordUrl}" {if isset($ForgotPasswordUrlNew)}{$ForgotPasswordUrlNew}{/if} class="btn btn-link pull-left-sm"><span><i
-										class="glyphicon glyphicon-question-sign"></i></span> {translate key='ForgotMyPassword'}</a>
-					</div>
-				{/if}
-				<div id="change-language" class="col-xs-12 col-sm-6">
-					<button type="button" class="btn btn-link pull-right-sm" data-toggle="collapse"
-							data-target="#change-language-options"><span><i class="glyphicon glyphicon-globe"></i></span>
-						{translate key=ChangeLanguage}
-					</button>
-					<div id="change-language-options" class="collapse">
-						<select {formname key=LANGUAGE} class="form-control input-sm" id="languageDropDown">
-							{object_html_options options=$Languages key='GetLanguageCode' label='GetDisplayName' selected=$SelectedLanguage}
-						</select>
-					</div>
+				<div class="panel-footer">
+					<a href="view-schedule.php" id="link_boton" class="btn btn-large btn-primary btn-block text-uppercase" role="button"><i class="fa-solid fa-calendar-days"></i> {translate key='ViewSchedule'}</a>
+					{if $ShowForgotPasswordPrompt}
+						<a href="{$ForgotPasswordUrl}" id="link_boton" {if isset($ForgotPasswordUrlNew)}{$ForgotPasswordUrlNew}{/if} class="btn btn-primary btn-block text-uppercase"><i
+										class="fa-solid fa-circle-question"></i> {translate key='ForgotMyPassword'}</a>
+					{/if}
 				</div>
 			</div>
-
+{*			<div id="login-footer" class="col-xs-12">
+					{if $ShowForgotPasswordPrompt}
+						<div id="forgot-password" class="col-xs-12 col-sm-6">
+							<a href="{$ForgotPasswordUrl}" {if isset($ForgotPasswordUrlNew)}{$ForgotPasswordUrlNew}{/if} class="btn btn-link pull-left-sm"><span><i
+											class="glyphicon glyphicon-question-sign"></i></span> {translate key='ForgotMyPassword'}</a>
+						</div>
+					{/if}
+					<div id="change-language" class="col-xs-12 col-sm-6">
+						<button type="button" class="btn btn-link pull-right-sm" data-toggle="collapse"
+								data-target="#change-language-options"><span><i class="glyphicon glyphicon-globe"></i></span>
+							{translate key=ChangeLanguage}
+						</button>
+						<div id="change-language-options" class="collapse">
+							<select {formname key=LANGUAGE} class="form-control input-sm" id="languageDropDown">
+								{object_html_options options=$Languages key='GetLanguageCode' label='GetDisplayName' selected=$SelectedLanguage}
+							</select>
+						</div>
+					</div> 
+				</div>
+			</div>
+*}
 
 		</form>
 	</div>

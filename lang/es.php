@@ -13,6 +13,9 @@ class es extends en_gb
     protected function _LoadStrings()
     {
         $strings = parent::_LoadStrings();
+        $strings['Recursos'] = 'Recursos';
+        $strings['PazSalvo'] = 'Paz y Salvos';
+
 
         $strings['FirstName'] = 'Nombre';
         $strings['LastName'] = 'Apellido';
@@ -214,7 +217,7 @@ class es extends en_gb
         $strings['RememberMe'] = 'Recuérdame';
         $strings['FirstTimeUser?'] = '¿Eres un usuario nuevo?';
         $strings['CreateAnAccount'] = 'Crear cuenta';
-        $strings['ViewSchedule'] = 'Ver planificación';
+        $strings['ViewSchedule'] = 'Ver horarios';
         $strings['ForgotMyPassword'] = 'He olvidado mi contraseña';
         $strings['YouWillBeEmailedANewPassword'] = 'Se te enviará una contraseña generada aleatoriamente.';
         $strings['Close'] = 'Cerrar';
@@ -862,21 +865,21 @@ class es extends en_gb
         $strings['ManageReservations'] = 'Gestionar reservas';
         $strings['AwaitingActivation'] = 'Esperando activación';
         $strings['PendingApproval'] = 'Pendiente de aprobación';
-        $strings['ManageSchedules'] = 'Planificaciones';
+        $strings['ManageSchedules'] = 'Laboratorios';
         $strings['ManageResources'] = 'Recursos';
         $strings['ManageAccessories'] = 'Accesorios';
         $strings['ManageUsers'] = 'Usuarios';
         $strings['ManageGroups'] = 'Grupos';
         $strings['ManageQuotas'] = 'Cuotas';
         $strings['ManageBlackouts'] = 'Agenda de no disponibilidad';
-        $strings['MyDashboard'] = 'Mi tablón';
+        $strings['MyDashboard'] = 'Agenda';
         $strings['ServerSettings'] = 'Ajustes de servidor';
-        $strings['Dashboard'] = 'Tablón';
+        $strings['Dashboard'] = 'Agenda';
         $strings['Help'] = 'Ayuda';
         $strings['Administration'] = 'Administración';
         $strings['About'] = 'Acerca de';
-        $strings['Bookings'] = 'Reservas';
-        $strings['Schedule'] = 'Planificación';
+        $strings['Bookings'] = 'Horarios';
+        $strings['Schedule'] = 'Horarios';
         $strings['Account'] = 'Cuenta';
         $strings['EditProfile'] = 'Editar mi perfil';
         $strings['FindAnOpening'] = 'Encontrar un hueco';

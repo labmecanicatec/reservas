@@ -5,6 +5,8 @@
 	<strong>Fin:</strong> {formatdate date=$EndDate key=reservation_email}<br/>
 	<strong>Título:</strong> {$Title}<br/>
 	<strong>Descripción:</strong> {$Description|nl2br}
+    <strong>Localización:</strong> {$Localizacion}<br/>
+    <strong>Notas:</strong> {$Note}
 	{if $Attributes|default:array()|count > 0}
 		<br/>
 	    {foreach from=$Attributes item=attribute}

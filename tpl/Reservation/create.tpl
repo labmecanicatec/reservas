@@ -12,397 +12,496 @@
 {/function}
 
 <div id="page-reservation">
-    <div id="reservation-box">
-        <form id="form-reservation" method="post" enctype="multipart/form-data" role="form">
+    <div class="row">
+        <div class="col-sm-7">
+            {* Avisos según Laboratorio *}
+            {if $ScheduleId=="18" or $ScheduleId=="19" or $ScheduleId=="20"}
+                {include file="../../custom/aviso_metrologia.tpl"}
+            {/if}
+            {if $ScheduleId=="9"}
+                {include file="../../custom/formato_prototipado.tpl"}
+            {/if}
+            {if $ScheduleId=="14" or $ScheduleId=="15" or $ScheduleId=="16" or $ScheduleId=="11"}
+                {include file="../../custom/formato.tpl"}
+            {/if}
+            <div class="panel panel-danger">
+                <div class="panel-heading"><h3 id="titulo"><h3 id="titulo">{block name=reservationHeader}{translate key="CreateReservationHeading"}{/block}</h3></div>
+                <div class="panel-body">
+                    <div id="reservation-box">
 
-            <div class="row">
-                <div class="col-md-6 col-xs-12 col-top reservationHeader">
-                    <h3>{block name=reservationHeader}{translate key="CreateReservationHeading"}{/block}</h3>
-                </div>
+                        <form id="form-reservation" method="post" enctype="multipart/form-data" role="form">
 
-                <div class="col-md-6 col-xs-12 col-top">
-            					<div class="pull-right-sm">
-            						<button type="button" class="btn btn-default" onclick="window.location='{$ReturnUrl}'">
-            							<span class="hidden-xs">{translate key='Cancel'}</span>
-            							<span class="visible-xs"><i class="fa fa-arrow-circle-left"></i></span>
-            						</button>
-                                    {block name="submitButtons"}
-            							<button type="button" class="btn btn-success save create btnCreate">
-            								<span class="glyphicon glyphicon-ok-circle"></span>
-                                            {translate key='Create'}
-            							</button>
-                                    {/block}
-            					</div>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12 col-top">
+                                    <div class="pull-right-sm">
+                                        <button type="button" class="btn btn-default" onclick="window.location='{$ReturnUrl}'">
+                                            <span class="hidden-xs">{translate key='Cancel'}</span>
+                                            <span class="visible-xs"><i class="fa-solid fa-circle-arrow-left"></i></span>
+                                        </button>
+                                        {block name="submitButtons"}
+                                            <button type="button" class="btn btn-primary save create btnCreate">
+                                                <i class="fa-solid fa-check"></i>
+                                                {translate key='Create'}
+                                            </button>
+                                        {/block}
+                                    </div>
 
-            					<div class="pull-right-sm margin-top-15 margin-bottom-15" style="clear:both;">
-                                    {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}
-            							<a href="#" id="btnViewAvailability"><i class="fa fa-calendar"></i> {translate key="ViewAvailability"}</a>
+                                    <div class="pull-right-sm margin-top-15 margin-bottom-15" style="clear:both;">
+                                        {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}
+                                            <a href="#" id="btnViewAvailability"><i class="fa fa-calendar"></i> {translate key="ViewAvailability"}</a>
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                {assign var="detailsCol" value="col-xs-12"}
+                                {assign var="participantCol" value="col-xs-12"}
+
+                                {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}
+                                    {assign var="detailsCol" value="col-xs-12 col-sm-6"}
+                                    {assign var="participantCol" value="col-xs-12 col-sm-6"}
+                                {/if}
+
+                                <div id="reservationDetails"
+                                    class="{$detailsCol} {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}detailsBorder{/if}">
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            {if $ShowUserDetails && $ShowReservationDetails}
+                                                <a href="#" id="userName" data-userid="{$UserId}">{$ReservationUserName}</a>
+                                            {else}
+                                                {translate key=Private}
+                                            {/if}
+                                            <input id="userId" type="hidden" {formname key=USER_ID} value="{$UserId}"/>
+                                            {if $CanChangeUser}
+                                                <a href="#" id="showChangeUsers" class="small-action">{translate key=Change} <i
+                                                            class="fa-solid fa-user"></i></a>
+                                                <div class="modal fade" id="changeUserDialog" tabindex="-1" role="dialog"
+                                                    aria-labelledby="usersModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-hidden="true">&times;
+                                                                </button>
+                                                                <h4 class="modal-title"
+                                                                    id="usersModalLabel">{translate key=ChangeUser}</h4>
+                                                            </div>
+                                                            <div class="modal-body scrollable-modal-content">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">{translate key='Cancel'}</button>
+                                                                <button type="button"
+                                                                        class="btn btn-primary">{translate key='Done'}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                            <div id="availableCredits" {if !$CreditsEnabled}style="display:none" }{/if}>
+                                                {translate key=AvailableCredits}
+                                                <span id="availableCreditsCount">{$CurrentUserCredits}</span> |
+                                                {translate key=CreditsRequired}
+                                                <span id="requiredCreditsCount"><span class="fa fa-spin fa-spinner"></span></span>
+                                                <span id="creditCost"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12" id="changeUsers">
+                                        <div class="form-group">
+                                            <label for="changeUserAutocomplete" class="no-show">{translate key=User}</label>
+                                            <input type="text" id="changeUserAutocomplete"
+                                                class="form-control inline-block user-search"/>
+                                            |
+                                            <button id="promptForChangeUsers" type="button" class="btn inline">
+                                                <i class="fa fa-users"></i>
+                                                {translate key='AllUsers'}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 reservationDates">
+                                        <div class="col-md-6 no-padding-left">
+                                            <div class="form-group no-margin-bottom">
+                                                <label for="BeginDate" class="reservationDate">{translate key='BeginDate'}</label>
+                                                <input type="text" id="BeginDate"
+                                                    class="form-control input-sm inline-block dateinput{if $LockPeriods} no-show{/if}"
+                                                    value="{formatdate date=$StartDate}"/>
+                                                <input type="hidden" id="formattedBeginDate" {formname key=BEGIN_DATE}
+                                                    value="{formatdate date=$StartDate key=system}"/>
+                                                <select id="BeginPeriod" {formname key=BEGIN_PERIOD}
+                                                        class="form-control input-sm inline-block timeinput{if $LockPeriods} no-show{/if}"
+                                                        title="Begin time">
+                                                    {foreach from=$StartPeriods item=period}
+                                                        {if $period->IsReservable()}
+                                                            {assign var='selected' value=''}
+                                                            {if $period eq $SelectedStart}
+                                                                {assign var='selected' value=' selected="selected"'}
+                                                                {assign var='startPeriod' value=$period}
+                                                            {/if}
+                                                            <option value="{$period->Begin()}"{$selected}>{$period->Label()}</option>
+                                                        {/if}
+                                                    {/foreach}
+                                                </select>
+                                                {if $LockPeriods}{formatdate date=$StartDate} {$startPeriod->Label()}{/if}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 no-padding-left">
+                                            <div class="form-group no-margin-bottom">
+                                                <label for="EndDate" class="reservationDate">{translate key='EndDate'}</label>
+                                                <input  style="display: none;" type="text" id="EndDate"
+                                                    class="form-control input-sm inline-block dateinput{if $LockPeriods} no-show{/if}"
+                                                    value="{formatdate date=$EndDate}"/>
+                                                <input type="hidden" id="formattedEndDate" {formname key=END_DATE}
+                                                    value="{formatdate date=$EndDate key=system}"/>
+                                                <select id="EndPeriod" {formname key=END_PERIOD}
+                                                        class="form-control  input-sm inline-block timeinput{if $LockPeriods} no-show{/if}"
+                                                        title="End time">
+                                                    {foreach from=$EndPeriods item=period name=endPeriods}
+                                                        {if $period->IsReservable()}
+                                                            {assign var='selected' value=''}
+                                                            {if $period eq $SelectedEnd}
+                                                                {assign var='selected' value=' selected="selected"'}
+                                                                {assign var='endPeriod' value=$period}
+                                                            {/if}
+                                                            <option value="{$period->End()}"{$selected}>{$period->LabelEnd()}</option>
+                                                        {/if}
+                                                    {/foreach}
+                                                </select>
+                                                {if $LockPeriods}{formatdate date=$EndDate} {$endPeriod->LabelEnd()}{/if}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 reservationLength">
+                                        <div class="form-group">
+                                            <span class="like-label">{translate key=ReservationLength}:</span>
+                                            <div class="durationText">
+    {*                                            <span id="durationDays">0</span> {translate key=days}
+    *}                                            <span id="durationHours">0</span> {translate key=hours}
+    {*                                            <span id="durationMinutes">0</span> {translate key=minutes}
+    *}                                        </div>
+                                        </div>
+                                    </div>
+
+                                    {if isset($CanViewResponsibilities) && $CanViewResponsibilities || (isset($CanViewAdmin) && $CanViewAdmin)}
+                                    {*if !$HideRecurrence*}
+                                        <div class="col-xs-12">
+                                            {control type="RecurrenceControl" RepeatTerminationDate=$RepeatTerminationDate}
+                                        </div>
                                     {/if}
-            					</div>
-            				</div>
-            </div>
 
-            <div class="row">
-                {assign var="detailsCol" value="col-xs-12"}
-                {assign var="participantCol" value="col-xs-12"}
+                                    <div class="col-xs-12 reservationResources" id="reservation-resources">
+                                        <div class="form-group">
+                                            <div class="pull-left">
+                                                <div>
+                                                    <label>{translate key="Resources"}</label>
+                                                    {if $ShowAdditionalResources}
+                                                        <a id="btnAddResources" href="#"
+                                                        class="small-action" data-toggle="modal"
+                                                        data-target="#dialogResourceGroups">{translate key=Change} <span
+                                                                    class="fa fa-plus-square"></span></a>
+                                                    {/if}
+                                                </div>
 
-                {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}
-                    {assign var="detailsCol" value="col-xs-12 col-sm-6"}
-                    {assign var="participantCol" value="col-xs-12 col-sm-6"}
-                {/if}
+                                                <div id="primaryResourceContainer" class="inline">
+                                                    <input type="hidden" id="scheduleId" {formname key=SCHEDULE_ID}
+                                                        value="{$ScheduleId}"/>
+                                                    <input class="resourceId" type="hidden"
+                                                        id="primaryResourceId" {formname key=RESOURCE_ID} value="{$ResourceId}"/>
+                                                    {displayResource resource=$Resource}
+                                                </div>
 
-                <div id="reservationDetails"
-                     class="{$detailsCol} {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}detailsBorder{/if}">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            {if $ShowUserDetails && $ShowReservationDetails}
-                                <a href="#" id="userName" data-userid="{$UserId}">{$ReservationUserName}</a>
-                            {else}
-                                {translate key=Private}
+                                                <div id="additionalResources">
+                                                    {foreach from=$AvailableResources item=resource}
+                                                        {if is_array($AdditionalResourceIds) && in_array($resource->Id, $AdditionalResourceIds)}
+                                                            <input class="resourceId" type="hidden"
+                                                                name="{FormKeys::ADDITIONAL_RESOURCES}[]" value="{$resource->Id}"/>
+                                                            {displayResource resource=$resource}
+                                                        {/if}
+                                                    {/foreach}
+                                                </div>
+                                            </div>
+                                            <div class="accessoriesDiv">
+                                                {if $ShowReservationDetails && $AvailableAccessories|default:array()|count > 0}
+                                                    <label>{translate key="Accessories"}</label>
+                                                    <a href="#" id="addAccessoriesPrompt"
+                                                    class="small-action" data-toggle="modal"
+                                                    data-target="#dialogAddAccessories">{translate key='Add'} <span
+                                                                class="fa fa-plus-square"></span></a>
+                                                    <div id="accessories"></div>
+                                                {/if}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 reservationTitle">
+                                        <div class="form-group has-feedback">
+                                            <label for="reservationTitle">{translate key="ReservationTitle"}</label>
+                                            {textbox name="RESERVATION_TITLE" class="form-control" value="ReservationTitle" id="reservationTitle" maxlength="300" required=$TitleRequired}
+                                            {if $TitleRequired}
+                                                <i class="glyphicon glyphicon-asterisk form-control-feedback"
+                                                data-bv-icon-for="reservationTitle"></i>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 reservationDescription">
+                                        <div class="form-group has-feedback">
+                                            <label for="description">{translate key="ReservationDescription"}
+                                            </label>
+                                            <textarea id="description" name="{FormKeys::DESCRIPTION}"
+                                                    class="form-control"
+                                                    {if $DescriptionRequired}required="required"{/if}>{$Description}</textarea>
+                                            {if $DescriptionRequired}
+                                                <i class="glyphicon glyphicon-asterisk form-control-feedback"
+                                                data-bv-icon-for="description"></i>
+                                            {/if}
+
+                                        </div>
+                                    </div>
+
+                                    {if !empty($ReferenceNumber)}
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label>{translate key=ReferenceNumber}</label>
+                                                {$ReferenceNumber}
+                                            </div>
+                                        </div>
+                                    {/if}
+                                </div>
+
+                                <div class="{$participantCol}">
+                                    {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}
+                                        {include file="Reservation/participation.tpl"}
+                                    {else}
+                                        {include file="Reservation/private-participation.tpl"}
+                                    {/if}
+                                </div>
+                            </div>
+
+                            <div class="row col-xs-12 same-height">
+                                <div id="custom-attributes-placeholder" class="col-xs-12">
+                                </div>
+                            </div>
+
+                            {if $RemindersEnabled}
+                                <div class="row col-xs-12">
+                                    <div class="col-xs-12 reservationReminders">
+                                        <div>
+                                            <label>{translate key=SendReminder}</label>
+                                        </div>
+                                        <div id="reminderOptionsStart">
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="startReminderEnabled"
+                                                    class="reminderEnabled" {formname key=START_REMINDER_ENABLED}/>
+                                                <label for="startReminderEnabled" style="min-width:0;"></label>
+                                                <label for="startReminderTime" class="no-show">Start Reminder Time</label>
+                                                <label for="startReminderInterval" class="no-show">Start Reminder Interval</label>
+                                                <input type="number" min="0" max="999" size="3" maxlength="3" value="15"
+                                                    class="reminderTime form-control input-sm inline-block" {formname key=START_REMINDER_TIME}
+                                                    id="startReminderTime"/>
+                                                <select class="reminderInterval form-control input-sm inline-block" {formname key=START_REMINDER_INTERVAL}
+                                                        id="startReminderInterval">
+                                                    <option value="{ReservationReminderInterval::Minutes}">{translate key=minutes}</option>
+                                                    <option value="{ReservationReminderInterval::Hours}">{translate key=hours}</option>
+                                                    <option value="{ReservationReminderInterval::Days}">{translate key=days}</option>
+                                                </select>
+
+                                                <span class="reminderLabel">{translate key=ReminderBeforeStart}</span>
+                                            </div>
+                                        </div>
+                                        <div id="reminderOptionsEnd">
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="endReminderEnabled"
+                                                    class="reminderEnabled" {formname key=END_REMINDER_ENABLED}/>
+                                                <label for="endReminderEnabled" style="min-width:0;"></label>
+                                                <label for="endReminderTime" class="no-show">End Reminder Time</label>
+                                                <label for="endReminderInterval" class="no-show">End Reminder Interval</label>
+                                                <input type="number" min="0" max="999" size="3" maxlength="3" value="15"
+                                                    class="reminderTime form-control input-sm inline-block" {formname key=END_REMINDER_TIME}
+                                                    id="endReminderTime"/>
+                                                <select class="reminderInterval form-control input-sm inline-block" {formname key=END_REMINDER_INTERVAL}
+                                                        id="endReminderInterval">
+                                                    <option value="{ReservationReminderInterval::Minutes}">{translate key=minutes}</option>
+                                                    <option value="{ReservationReminderInterval::Hours}">{translate key=hours}</option>
+                                                    <option value="{ReservationReminderInterval::Days}">{translate key=days}</option>
+                                                </select>
+                                                <span class="reminderLabel">{translate key=ReminderBeforeEnd}</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="clear">&nbsp;</div>
+                                    </div>
+                                </div>
                             {/if}
-                            <input id="userId" type="hidden" {formname key=USER_ID} value="{$UserId}"/>
-                            {if $CanChangeUser}
-                                <a href="#" id="showChangeUsers" class="small-action">{translate key=Change} <i
-                                            class="fa fa-user"></i></a>
-                                <div class="modal fade" id="changeUserDialog" tabindex="-1" role="dialog"
-                                     aria-labelledby="usersModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-hidden="true">&times;
-                                                </button>
-                                                <h4 class="modal-title"
-                                                    id="usersModalLabel">{translate key=ChangeUser}</h4>
-                                            </div>
-                                            <div class="modal-body scrollable-modal-content">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">{translate key='Cancel'}</button>
-                                                <button type="button"
-                                                        class="btn btn-primary">{translate key='Done'}</button>
+
+                            {if $UploadsEnabled}
+                                <div class="row col-xs-12">
+                                    <div class="col-xs-12 reservationAttachments">
+
+                                        <label>{translate key=AttachFile} <span class="note">({$MaxUploadSize}
+                                                MB {translate key=Maximum})</span>
+                                        </label>
+
+                                        <div id="reservationAttachments">
+                                            <div class="attachment-item">
+                                                <label for="reservationUploadFile">Reservation Upload File</label>
+                                                <input type="file" {formname key=RESERVATION_FILE multi=true}
+                                                    id="reservationUploadFile"/>
+                                                <a class="add-attachment" href="#">{translate key=Add} <i class="fa fa-plus-square"></i></a>
+                                                <a class="remove-attachment" href="#"><span
+                                                            class="no-show">{translate key=Delete}</span><i
+                                                            class="fa fa-minus-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             {/if}
-                            <div id="availableCredits" {if !$CreditsEnabled}style="display:none" }{/if}>
-                                {translate key=AvailableCredits}
-                                <span id="availableCreditsCount">{$CurrentUserCredits}</span> |
-                                {translate key=CreditsRequired}
-                                <span id="requiredCreditsCount"><span class="fa fa-spin fa-spinner"></span></span>
-                                <span id="creditCost"></span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-xs-12" id="changeUsers">
-                        <div class="form-group">
-                            <label for="changeUserAutocomplete" class="no-show">{translate key=User}</label>
-                            <input type="text" id="changeUserAutocomplete"
-                                   class="form-control inline-block user-search"/>
-                            |
-                            <button id="promptForChangeUsers" type="button" class="btn inline">
-                                <i class="fa fa-users"></i>
-                                {translate key='AllUsers'}
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 reservationDates">
-                        <div class="col-md-6 no-padding-left">
-                            <div class="form-group no-margin-bottom">
-                                <label for="BeginDate" class="reservationDate">{translate key='BeginDate'}</label>
-                                <input type="text" id="BeginDate"
-                                       class="form-control input-sm inline-block dateinput{if $LockPeriods} no-show{/if}"
-                                       value="{formatdate date=$StartDate}"/>
-                                <input type="hidden" id="formattedBeginDate" {formname key=BEGIN_DATE}
-                                       value="{formatdate date=$StartDate key=system}"/>
-                                <select id="BeginPeriod" {formname key=BEGIN_PERIOD}
-                                        class="form-control input-sm inline-block timeinput{if $LockPeriods} no-show{/if}"
-                                        title="Begin time">
-                                    {foreach from=$StartPeriods item=period}
-                                        {if $period->IsReservable()}
-                                            {assign var='selected' value=''}
-                                            {if $period eq $SelectedStart}
-                                                {assign var='selected' value=' selected="selected"'}
-                                                {assign var='startPeriod' value=$period}
-                                            {/if}
-                                            <option value="{$period->Begin()}"{$selected}>{$period->Label()}</option>
+                            {if $Terms != null}
+                                <div class="row col-xs-12" id="termsAndConditions">
+                                    <div class="col-xs-12">
+                                        {if $TermsAccepted}
+                                            <div class="margin-top-25">
+                                            <i class="fas fa-check-square-o"></i> {translate key=IAccept}
+                                            <a href="{$Terms->DisplayUrl()}" style="vertical-align: middle" target="_blank">{translate key=TheTermsOfService}</a>
+                                            </div>
+                                        {else}
+                                            <div class="checkbox">
+                                                <input type="checkbox"
+                                                    id="termsAndConditionsAcknowledgement" {formname key=TOS_ACKNOWLEDGEMENT} {if $TermsAccepted}checked="checked"{/if}/>
+                                                <label for="termsAndConditionsAcknowledgement">{translate key=IAccept}</label>
+                                                <a href="{$Terms->DisplayUrl()}" style="vertical-align: middle"
+                                                target="_blank">{translate key=TheTermsOfService}</a>
+                                            </div>
                                         {/if}
-                                    {/foreach}
-                                </select>
-                                {if $LockPeriods}{formatdate date=$StartDate} {$startPeriod->Label()}{/if}
-                            </div>
-                        </div>
-                        <div class="col-md-6 no-padding-left">
-                            <div class="form-group no-margin-bottom">
-                                <label for="EndDate" class="reservationDate">{translate key='EndDate'}</label>
-                                <input type="text" id="EndDate"
-                                       class="form-control input-sm inline-block dateinput{if $LockPeriods} no-show{/if}"
-                                       value="{formatdate date=$EndDate}"/>
-                                <input type="hidden" id="formattedEndDate" {formname key=END_DATE}
-                                       value="{formatdate date=$EndDate key=system}"/>
-                                <select id="EndPeriod" {formname key=END_PERIOD}
-                                        class="form-control  input-sm inline-block timeinput{if $LockPeriods} no-show{/if}"
-                                        title="End time">
-                                    {foreach from=$EndPeriods item=period name=endPeriods}
-                                        {if $period->IsReservable()}
-                                            {assign var='selected' value=''}
-                                            {if $period eq $SelectedEnd}
-                                                {assign var='selected' value=' selected="selected"'}
-                                                {assign var='endPeriod' value=$period}
-                                            {/if}
-                                            <option value="{$period->End()}"{$selected}>{$period->LabelEnd()}</option>
-                                        {/if}
-                                    {/foreach}
-                                </select>
-                                {if $LockPeriods}{formatdate date=$EndDate} {$endPeriod->LabelEnd()}{/if}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 reservationLength">
-                        <div class="form-group">
-                            {*<span class="like-label">{translate key=ReservationLength}</span>*}
-                            <div class="durationText">
-                                <span id="durationDays">0</span> {translate key=days}
-                                <span id="durationHours">0</span> {translate key=hours}
-                                <span id="durationMinutes">0</span> {translate key=minutes}
-                            </div>
-                        </div>
-                    </div>
-
-                    {if !$HideRecurrence}
-                        <div class="col-xs-12">
-                            {control type="RecurrenceControl" RepeatTerminationDate=$RepeatTerminationDate}
-                        </div>
-                    {/if}
-
-                    <div class="col-xs-12 reservationResources" id="reservation-resources">
-                        <div class="form-group">
-                            <div class="pull-left">
-                                <div>
-                                    <label>{translate key="Resources"}</label>
-                                    {if $ShowAdditionalResources}
-                                        <a id="btnAddResources" href="#"
-                                           class="small-action" data-toggle="modal"
-                                           data-target="#dialogResourceGroups">{translate key=Change} <span
-                                                    class="fa fa-plus-square"></span></a>
-                                    {/if}
+                                    </div>
                                 </div>
-
-                                <div id="primaryResourceContainer" class="inline">
-                                    <input type="hidden" id="scheduleId" {formname key=SCHEDULE_ID}
-                                           value="{$ScheduleId}"/>
-                                    <input class="resourceId" type="hidden"
-                                           id="primaryResourceId" {formname key=RESOURCE_ID} value="{$ResourceId}"/>
-                                    {displayResource resource=$Resource}
-                                </div>
-
-                                <div id="additionalResources">
-                                    {foreach from=$AvailableResources item=resource}
-                                        {if is_array($AdditionalResourceIds) && in_array($resource->Id, $AdditionalResourceIds)}
-                                            <input class="resourceId" type="hidden"
-                                                   name="{FormKeys::ADDITIONAL_RESOURCES}[]" value="{$resource->Id}"/>
-                                            {displayResource resource=$resource}
-                                        {/if}
-                                    {/foreach}
-                                </div>
-                            </div>
-                            <div class="accessoriesDiv">
-                                {if $ShowReservationDetails && $AvailableAccessories|default:array()|count > 0}
-                                    <label>{translate key="Accessories"}</label>
-                                    <a href="#" id="addAccessoriesPrompt"
-                                       class="small-action" data-toggle="modal"
-                                       data-target="#dialogAddAccessories">{translate key='Add'} <span
-                                                class="fa fa-plus-square"></span></a>
-                                    <div id="accessories"></div>
-                                {/if}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 reservationTitle">
-                        <div class="form-group has-feedback">
-                            <label for="reservationTitle">{translate key="ReservationTitle"}</label>
-                            {textbox name="RESERVATION_TITLE" class="form-control" value="ReservationTitle" id="reservationTitle" maxlength="300" required=$TitleRequired}
-                            {if $TitleRequired}
-                                <i class="glyphicon glyphicon-asterisk form-control-feedback"
-                                   data-bv-icon-for="reservationTitle"></i>
-                            {/if}
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 reservationDescription">
-                        <div class="form-group has-feedback">
-                            <label for="description">{translate key="ReservationDescription"}
-                            </label>
-                            <textarea id="description" name="{FormKeys::DESCRIPTION}"
-                                      class="form-control"
-                                      {if $DescriptionRequired}required="required"{/if}>{$Description}</textarea>
-                            {if $DescriptionRequired}
-                                <i class="glyphicon glyphicon-asterisk form-control-feedback"
-                                   data-bv-icon-for="description"></i>
                             {/if}
 
-                        </div>
-                    </div>
+                            <input type="hidden" {formname key=RESERVATION_ID} value="{$ReservationId}"/>
+                            <input type="hidden" {formname key=REFERENCE_NUMBER} value="{$ReferenceNumber}" id="referenceNumber"/>
+                            <input type="hidden" {formname key=RESERVATION_ACTION} value="{$ReservationAction}"/>
+                            <input type="hidden" {formname key=DELETE_REASON} value="" id="hdnDeleteReason"/>
 
-                    {if !empty($ReferenceNumber)}
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label>{translate key=ReferenceNumber}</label>
-                                {$ReferenceNumber}
-                            </div>
-                        </div>
-                    {/if}
-                </div>
+                            <input type="hidden" {formname key=SERIES_UPDATE_SCOPE} id="hdnSeriesUpdateScope"
+                                value="{SeriesUpdateScope::FullSeries}"/>
 
-                <div class="{$participantCol}">
-                    {if $ShowParticipation && $AllowParticipation && $ShowReservationDetails}
-                        {include file="Reservation/participation.tpl"}
-                    {else}
-                        {include file="Reservation/private-participation.tpl"}
-                    {/if}
-                </div>
-            </div>
-
-            <div class="row col-xs-12 same-height">
-                <div id="custom-attributes-placeholder" class="col-xs-12">
-                </div>
-            </div>
-
-            {if $RemindersEnabled}
-                <div class="row col-xs-12">
-                    <div class="col-xs-12 reservationReminders">
-                        <div>
-                            <label>{translate key=SendReminder}</label>
-                        </div>
-                        <div id="reminderOptionsStart">
-                            <div class="checkbox">
-                                <input type="checkbox" id="startReminderEnabled"
-                                       class="reminderEnabled" {formname key=START_REMINDER_ENABLED}/>
-                                <label for="startReminderEnabled" style="min-width:0;"></label>
-                                <label for="startReminderTime" class="no-show">Start Reminder Time</label>
-                                <label for="startReminderInterval" class="no-show">Start Reminder Interval</label>
-                                <input type="number" min="0" max="999" size="3" maxlength="3" value="15"
-                                       class="reminderTime form-control input-sm inline-block" {formname key=START_REMINDER_TIME}
-                                       id="startReminderTime"/>
-                                <select class="reminderInterval form-control input-sm inline-block" {formname key=START_REMINDER_INTERVAL}
-                                        id="startReminderInterval">
-                                    <option value="{ReservationReminderInterval::Minutes}">{translate key=minutes}</option>
-                                    <option value="{ReservationReminderInterval::Hours}">{translate key=hours}</option>
-                                    <option value="{ReservationReminderInterval::Days}">{translate key=days}</option>
-                                </select>
-
-                                <span class="reminderLabel">{translate key=ReminderBeforeStart}</span>
-                            </div>
-                        </div>
-                        <div id="reminderOptionsEnd">
-                            <div class="checkbox">
-                                <input type="checkbox" id="endReminderEnabled"
-                                       class="reminderEnabled" {formname key=END_REMINDER_ENABLED}/>
-                                <label for="endReminderEnabled" style="min-width:0;"></label>
-                                <label for="endReminderTime" class="no-show">End Reminder Time</label>
-                                <label for="endReminderInterval" class="no-show">End Reminder Interval</label>
-                                <input type="number" min="0" max="999" size="3" maxlength="3" value="15"
-                                       class="reminderTime form-control input-sm inline-block" {formname key=END_REMINDER_TIME}
-                                       id="endReminderTime"/>
-                                <select class="reminderInterval form-control input-sm inline-block" {formname key=END_REMINDER_INTERVAL}
-                                        id="endReminderInterval">
-                                    <option value="{ReservationReminderInterval::Minutes}">{translate key=minutes}</option>
-                                    <option value="{ReservationReminderInterval::Hours}">{translate key=hours}</option>
-                                    <option value="{ReservationReminderInterval::Days}">{translate key=days}</option>
-                                </select>
-                                <span class="reminderLabel">{translate key=ReminderBeforeEnd}</span>
+                            <div class="row">
+                                <div class="reservationButtons col-md-6 col-md-offset-6 col-xs-12">
+                                    <div class="pull-right-sm">
+                                        <button type="button" class="btn btn-default" onclick="window.location='{$ReturnUrl}'">
+                                            <span class="hidden-xs">{translate key='Cancel'}</span>
+                                            <span class="visible-xs"><i class="fa-solid fa-circle-arrow-left"></i></span>
+                                        </button>
+                                        {block name="submitButtons"}
+                                            <button type="button" class="btn btn-primary save create btnCreate">
+                                                <span class="fa-solid fa-check"></span>
+                                                {translate key='Create'}
+                                            </button>
+                                        {/block}
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
-                        <div class="clear">&nbsp;</div>
-                    </div>
-                </div>
-            {/if}
+                            {csrf_token}
 
-            {if $UploadsEnabled}
-                <div class="row col-xs-12">
-                    <div class="col-xs-12 reservationAttachments">
+                            {if $UploadsEnabled}
+                                {block name='attachments'}
+                                {/block}
+                            {/if}
 
-                        <label>{translate key=AttachFile} <span class="note">({$MaxUploadSize}
-                                MB {translate key=Maximum})</span>
-                        </label>
-
-                        <div id="reservationAttachments">
-                            <div class="attachment-item">
-                                <label for="reservationUploadFile">Reservation Upload File</label>
-                                <input type="file" {formname key=RESERVATION_FILE multi=true}
-                                       id="reservationUploadFile"/>
-                                <a class="add-attachment" href="#">{translate key=Add} <i class="fa fa-plus-square"></i></a>
-                                <a class="remove-attachment" href="#"><span
-                                            class="no-show">{translate key=Delete}</span><i
-                                            class="fa fa-minus-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {/if}
-
-            {if $Terms != null}
-                <div class="row col-xs-12" id="termsAndConditions">
-                    <div class="col-xs-12">
-                        {if $TermsAccepted}
-                            <div class="margin-top-25">
-                            <i class="fa fa-check-square-o"></i> {translate key=IAccept}
-                            <a href="{$Terms->DisplayUrl()}" style="vertical-align: middle" target="_blank">{translate key=TheTermsOfService}</a>
-                            </div>
-                        {else}
-                            <div class="checkbox">
-                                <input type="checkbox"
-                                       id="termsAndConditionsAcknowledgement" {formname key=TOS_ACKNOWLEDGEMENT} {if $TermsAccepted}checked="checked"{/if}/>
-                                <label for="termsAndConditionsAcknowledgement">{translate key=IAccept}</label>
-                                <a href="{$Terms->DisplayUrl()}" style="vertical-align: middle"
-                                   target="_blank">{translate key=TheTermsOfService}</a>
-                            </div>
-                        {/if}
-                    </div>
-                </div>
-            {/if}
-
-            <input type="hidden" {formname key=RESERVATION_ID} value="{$ReservationId}"/>
-            <input type="hidden" {formname key=REFERENCE_NUMBER} value="{$ReferenceNumber}" id="referenceNumber"/>
-            <input type="hidden" {formname key=RESERVATION_ACTION} value="{$ReservationAction}"/>
-            <input type="hidden" {formname key=DELETE_REASON} value="" id="hdnDeleteReason"/>
-
-            <input type="hidden" {formname key=SERIES_UPDATE_SCOPE} id="hdnSeriesUpdateScope"
-                   value="{SeriesUpdateScope::FullSeries}"/>
-
-            <div class="row">
-                <div class="reservationButtons col-md-6 col-md-offset-6 col-xs-12">
-                    <div class="pull-right-sm">
-                        <button type="button" class="btn btn-default" onclick="window.location='{$ReturnUrl}'">
-                            <span class="hidden-xs">{translate key='Cancel'}</span>
-                            <span class="visible-xs"><i class="fa fa-arrow-circle-left"></i></span>
-                        </button>
-                        {block name="submitButtons"}
-                            <button type="button" class="btn btn-success save create btnCreate">
-                                <span class="glyphicon glyphicon-ok-circle"></span>
-                                {translate key='Create'}
-                            </button>
-                        {/block}
+                            <div id="retrySubmitParams" class="no-show"></div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            {csrf_token}
-
-            {if $UploadsEnabled}
-                {block name='attachments'}
-                {/block}
+        </div>
+        <div class="col-sm-5">
+            <!-- Ciencias Térmicas -->
+            {if $ScheduleId=="3"}
+                {include file="../../custom/rec_ciencias_termicas.tpl"}
             {/if}
 
-            <div id="retrySubmitParams" class="no-show"></div>
-        </form>
+            <!-- Hidráulica -->
+            {if $ScheduleId=="4"}
+                {include file="../../custom/rec_hidraulica.tpl"}
+            {/if}
+
+            <!-- Materiales Poliméricos --> 
+            {if $ScheduleId=="5"}
+                {include file="../../custom/rec_materiales_polimericos.tpl"}
+            {/if}
+
+            <!-- Mecánica de Fluidos -->
+            {if $ScheduleId=="6"}
+                {include file="../../custom/rec_mecanica_fluidos.tpl"}
+            {/if}
+
+            <!-- Metalografía -->
+            {if $ScheduleId=="7"}
+                {include file="../../custom/rec_metalografia.tpl"}
+            {/if}
+
+            <!-- Motores -->
+            {if $ScheduleId=="17"}
+                {include file="../../custom/rec_motores.tpl"}
+            {/if}
+        
+            <!-- Neumática -->
+            {if $ScheduleId=="8"}
+                {include file="../../custom/rec_neumatica.tpl"}
+            {/if}
+
+            <!-- Prototipado -->
+            {if $ScheduleId=="9"}
+                {include file="../../custom/rec_prototipado.tpl"}
+            {/if}
+
+            <!-- Resistencia de Materiales -->
+            {if $ScheduleId=="10"}
+                {include file="../../custom/rec_resistencia.tpl"}
+            {/if}
+
+            <!-- Robótica y CNC -->
+            {if $ScheduleId=="11"}
+                {include file="../../custom/rec_robotica_cnc.tpl"}
+            {/if}
+
+            <!-- Software Aplicado -->
+            {if $ScheduleId=="12"}
+                {include file="../../custom/rec_construccion.tpl"}
+            {/if}
+
+            <!-- Tratamientos Térmicos -->
+            {if $ScheduleId=="13"}
+                {include file="../../custom/rec_tratamientos_termicos.tpl"}
+            {/if}
+
+            <!-- Taller de Ajuste -->
+            {if $ScheduleId=="14"}
+                {include file="../../custom/rec_taller_ajuste.tpl"}
+            {/if}
+
+            <!-- Taller de Máquinas y Herramientas -->
+            {if $ScheduleId=="15"}
+                {include file="../../custom/rec_taller_maquinas.tpl"}
+            {/if}
+
+            <!-- Soldadura -->
+            {if $ScheduleId=="16"}
+                {include file="../../custom/rec_taller_soldadura.tpl"}
+            {/if}
+
+        <!-- Metrología -->
+            {if $ScheduleId=="18"}
+                {include file="../../custom/rec_metrologia.tpl"}
+            {/if}   
+
+        </div>
     </div>
 
     <div class="modal fade" id="dialogResourceGroups" tabindex="-1" role="dialog" aria-labelledby="resourcesModalLabel"

@@ -23,14 +23,14 @@ function Schedule(opts, resourceGroups) {
         renderEvents();
         this.initResources();
         this.initNavigation();
-
+/*
         var today = $(".today");
         if (today && today.length > 0) {
             $('html, body').animate({
                 scrollTop: today.offset().top - 50
             }, 500);
         }
-
+*/
         $(window).on('resize', _.debounce(function () {
             let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
             if (!isMobile) {
@@ -612,7 +612,7 @@ function Schedule(opts, resourceGroups) {
         function show() {
             shown = true;
             $('#reservations-left').removeClass('hidden');
-            $('#reservations').addClass('col-md-10').removeClass('col-md-12');
+            //$('#reservations').addClass('col-md-10').removeClass('col-md-12');
             $('#restore-sidebar').addClass('hidden');
 
             localStorage.removeItem('hide-sidebar-status');

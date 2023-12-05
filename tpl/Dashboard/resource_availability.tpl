@@ -1,4 +1,4 @@
-<div class="dashboard dashboard availabilityDashboard" id="availabilityDashboard">
+{*<div class="dashboard dashboard availabilityDashboard" id="availabilityDashboard">
     <div class="dashboardHeader">
         <div class="pull-left">{translate key="ResourceAvailability"}</div>
         <div class="pull-right">
@@ -107,3 +107,4 @@
         {/foreach}
     </div>
 </div>
+*}

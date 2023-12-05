@@ -14,7 +14,8 @@
                 <div id="reservationDetails" class="{$detailsCol}">
                     <div class="col-xs-12">
                         <label>{translate key='User'}</label>
-                        {if $ShowUserDetails && $ShowReservationDetails}
+                        {*if $ShowUserDetails || $ShowReservationDetails*}
+                        {if $CanViewResourceAdmin or $CanViewScheduleAdmin}
                             <a href="#" class="bindableUser" data-userid="{$UserId}">{$ReservationUserName}</a>
                             <input id="userId" type="hidden" value="{$UserId}"/>
                         {else}
@@ -63,7 +64,7 @@
                                 {if $RepeatMonthlyType neq ''}
                                     ({$RepeatMonthlyType})
                                 {/if}
-                                {if (is_array($RepeatWeekdays) && count($RepeatWeekdays) gt 0)}
+                                {if count($RepeatWeekdays) gt 0}
                                     <br/>
                                     <label>{translate key='RepeatDaysPrompt'}</label>
                                     {foreach from=$RepeatWeekdays item=day}{translate key=$DayNames[$day]} {/foreach}
@@ -239,7 +240,7 @@
                                 {/if}
 
                                 {assign var=icsUrl value="{$Path}export/{Pages::CALENDAR_EXPORT}?{QueryStringKeys::REFERENCE_NUMBER}={$ReferenceNumber}"}
-                                <a href="{$icsUrl}" download="{$icsUrl}" class="btn btn-default">
+{*                                <a href="{$icsUrl}" download="{$icsUrl}" class="btn btn-default">
                                     <span class="fa fa-calendar"></span>
                                     {translate key=AddToOutlook}</a>
                                 <a href="http://www.google.com/calendar/event?action=TEMPLATE&text={$ReservationTitle|escape:'url'}&dates={formatdate date=$StartDate->ToUtc() key=google}/{formatdate date=$EndDate->ToUtc() key=google}&ctz={$StartDate->Timezone()}&details={$Description|escape:'url'}&location={$Resource->Name|escape:'url'}&trp=false&sprop=&sprop=name:"
@@ -252,7 +253,7 @@
 								<button type="button" class="btnPDF btn btn-default">
                                     <span class="fa fa-file-pdf-o"></span>
                                     PDF</button>
-                            {/block}
+*}                            {/block}
 
                             {block name="submitButtons"}
                                 {if $CheckInRequired && (!checkinAdminOnly || $CanViewAdmin)}

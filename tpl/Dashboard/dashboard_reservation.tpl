@@ -1,4 +1,4 @@
-{assign var=checkin value=$reservation->IsCheckinEnabled() && $reservation->RequiresCheckin()}
+{*{assign var=checkin value=$reservation->IsCheckinEnabled() && $reservation->RequiresCheckin()}
 {assign var=checkout value=$reservation->IsCheckinEnabled() && $reservation->RequiresCheckout()}
 {assign var=class value=""}
 {if $reservation->RequiresApproval}{assign var=class value="pending"}{/if}
@@ -28,3 +28,4 @@
     {/if}
     <div class="clearfix"></div>
 </div>
+*}

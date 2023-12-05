@@ -95,8 +95,8 @@
             <div class="row">
                 {assign var=titleWidth value="col-sm-12 col-xs-12"}
                 {if !isset($HideSchedule) || !$HideSchedule}
-                    {assign var=titleWidth value="col-sm-6 col-xs-12"}
-                    <div id="schedule-actions" class="col-sm-3 col-xs-12">
+                    {assign var=titleWidth value="col-sm-12 col-xs-12"}
+                    <div id="schedule-actions" class="col-sm-12 col-xs-12">
                         {block name="actions"}
                             <a href="#" id="print_schedule" title="{translate key=Print}"><span
                                         class="fa fa-print"></span></a>
@@ -110,7 +110,7 @@
                                schedule-display="{ScheduleStyle::Wide}">{html_image src="table-wide.png" altKey="WideScheduleDisplay"}</a>
                             <a href="#" class="schedule-style hidden-sm hidden-xs" id="schedule_week"
                                schedule-display="{ScheduleStyle::CondensedWeek}">{html_image src="table-week.png" altKey="CondensedWeekScheduleDisplay"}</a>
-                            <div>
+                            <div style="display: none;">
                                 {if isset($SubscriptionUrl) && $SubscriptionUrl != null && $ShowSubscription}
                                     {html_image src="feed.png"}
                                     <a target="_blank" href="{$SubscriptionUrl->GetAtomUrl()}">Atom</a>
@@ -132,7 +132,7 @@
 							 {/foreach}
 						 </select>
 					{/if}
-                    <a href="#" id="calendar_toggle" title="{translate key=ShowHideNavigation}">
+                    <a style="display:none;" href="#" id="calendar_toggle" title="{translate key=ShowHideNavigation}">
                         <span class="glyphicon glyphicon-calendar"></span>
                         <span class="no-show">{translate key=ShowHideNavigation}</span>
                     </a>
@@ -151,18 +151,18 @@
 
                 {capture name="date_navigation"}
                     {if !isset($HideSchedule) || !$HideSchedule}
-                        <div class="schedule-dates col-sm-3 col-xs-12">
+                        <div class="schedule-dates col-sm-12 col-xs-12">
                             {assign var=TodaysDate value=Date::Now()}
                             <a href="#" class="change-date btn-link btn-success" data-year="{$TodaysDate->Year()}"
                                data-month="{$TodaysDate->Month()}" data-day="{$TodaysDate->Day()}"
-                               alt="{translate key=Today}"><i class="fa fa-home"></i>
+                               alt="{translate key=Today}"><i id="icon" class="fa-solid fa-house-chimney"></i>
                                 <span class="no-show">{translate key=Today}</span>
                             </a>
                             {assign var=FirstDate value=$DisplayDates->GetBegin()}
                             {assign var=LastDate value=$DisplayDates->GetEnd()->AddDays(-1)}
                             <a href="#" class="change-date" data-year="{$PreviousDate->Year()}"
                                data-month="{$PreviousDate->Month()}"
-                               data-day="{$PreviousDate->Day()}">{html_image src="arrow_large_left.png" alt="{translate key=Back}"}</a>
+                               data-day="{$PreviousDate->Day()}"><span id="icon" class="fas fa-arrow-circle-left" title="{translate key=Back}" aria-hidden="true"></span></a>
                             {formatdate date=$FirstDate}
                             {if $ShowWeekNumbers}({$FirstDate->WeekNumber()}){/if}
                             -
@@ -170,13 +170,13 @@
                             {if $ShowWeekNumbers}({$LastDate->WeekNumber()}){/if}
                             <a href="#" class="change-date" data-year="{$NextDate->Year()}"
                                data-month="{$NextDate->Month()}"
-                               data-day="{$NextDate->Day()}">{html_image src="arrow_large_right.png" alt="{translate key=Forward}"}</a>
+                               data-day="{$NextDate->Day()}"><span id="icon" class="fas fa-arrow-circle-right" title="{translate key=Forward}" aria-hidden="true"></span></a>
 
-                            {if $ShowFullWeekLink}
+    {*                        {if $ShowFullWeekLink}
                                 <a href="{add_querystring key=SHOW_FULL_WEEK value=1}"
                                    id="showFullWeek">({translate key=ShowFullWeek})</a>
                             {/if}
-                        </div>
+*}                        </div>
                     {/if}
                 {/capture}
 
@@ -230,16 +230,16 @@
                         <div class="legend reserved">{translate key=Reserved}</div>
                         {if $LoggedIn}
                             <div class="legend reserved mine">{translate key=MyReservation}</div>
-                            <div class="legend reserved participating">{translate key=Participant}</div>
-                        {/if}
+{*                            <div class="legend reserved participating">{translate key=Participant}</div>
+*}                        {/if}
                         <div class="legend reserved pending">{translate key=Pending}</div>
-                        <div class="legend pasttime">{translate key=Past}</div>
+{*                        <div class="legend pasttime">{translate key=Past}</div>
                         <div class="legend restricted">{translate key=Restricted}</div>
-                    </div>
+*}                    </div>
                 </div>
             {/block}
             <div class="row">
-                <div id="reservations-left" class="col-md-2 col-sm-12 default-box">
+                <div style="display:none;" id="reservations-left" class="col-md-2 col-sm-12 default-box">
                     <div class="reservations-left-header">{translate key=Filter}
                         <a href="#" class="pull-right toggle-sidebar" title="Hide Reservation Filter"><i
                                     class="glyphicon glyphicon-remove"></i>
@@ -247,7 +247,7 @@
                         </a>
                     </div>
 
-                    <div class="reservations-left-content">
+                    <div style="display:none;" class="reservations-left-content">
                         <form method="get" role="form" id="advancedFilter">
 
                             {if count($ResourceAttributes) + count($ResourceTypeAttributes) > 5}
@@ -326,8 +326,8 @@
                     </div>
                 </div>
 
-                <div id="reservations" class="col-md-10 col-sm-12">
-                    <div>
+                <div id="reservations" class="col-md-12 col-sm-12">
+                    <div  style="display:none;">
                         <a href="#" id="restore-sidebar" title="Show Reservation Filter"
                            class="hidden toggle-sidebar">{translate key=ResourceFilter} <i
                                     class="glyphicon glyphicon-filter"></i> <i

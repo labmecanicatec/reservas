@@ -20,7 +20,7 @@
 			</div>
 		{/if}
 		<div id="password-reset-box" class="default-box col-xs-12 col-sm-8 col-sm-offset-2">
-			<h1>{translate key="ChangePassword"}</h1>
+			<h1 id="titulo">{translate key="ChangePassword"}</h1>
 
 			<form id="password-reset-form" method="post" action="{$smarty.server.SCRIPT_NAME}">
 

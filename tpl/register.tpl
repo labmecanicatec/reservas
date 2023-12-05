@@ -19,7 +19,7 @@
               data-bv-onsuccess="enableButton"
               data-bv-live="enabled">
 
-            <h1>{translate key=RegisterANewAccount}</h1>
+            <h1 id="titulo">{translate key=RegisterANewAccount}</h1>
 
             <div class="validationSummary alert alert-danger no-show" id="validationErrors">
                 <ul>
@@ -45,9 +45,11 @@
                 <div class="col-xs-12 col-sm-6" id="username">
                     <div class="form-group">
                         <label class="reg" for="login">{translate key="Username"}</label>
-                        {textbox name="LOGIN" value="Login" required="required"
+                        {textbox id="codigo" name="LOGIN" value="Login" required="required"
                         data-bv-notempty="true"
-                        data-bv-notempty-message="{translate key=UserNameRequired}"}
+                        data-bv-notempty-message="{translate key=UserNameRequired}"
+                        onKeyPress="return acceptNum(event);maximo()" 
+							onblur="obtnercarrera(event);validarCodigo()"}
                     </div>
                 </div>
 
@@ -107,7 +109,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" style="display:none;">
                 <div class="col-xs-12 col-sm-6" id="default-page">
                     <div class="form-group">
                         <label class="reg" for="homepage">{translate key="DefaultPage"}</label>
@@ -145,7 +147,7 @@
                 <div class="col-xs-12 col-sm-6" id="organization">
                     <div class="form-group">
                         <label class="reg" for="txtOrganization">{translate key="Organization"}</label>
-                        <input type="text" id="txtOrganization" {formname key="ORGANIZATION"} class="form-control"
+                        <input type="text" id="txtOrganization" {formname key="ORGANIZATION"} class="form-control" readonly="true"
                                size="20"
                                 {if $RequireOrganization}required="required"
                                     data-bv-notempty="true"
@@ -155,7 +157,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-6" id="position">
+                <div style="display:none;" class="col-xs-12 col-sm-6" id="position">
                     <div class="form-group">
                         <label class="reg" for="txtPosition">{translate key="Position"}</label>
                         <input type="text" id="txtPosition" {formname key="POSITION"} class="form-control"
@@ -190,7 +192,7 @@
             {if $EnableCaptcha}
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="form-group">
+                        <div class="form-group text-center">
                             {control type="CaptchaControl"}
                         </div>
                     </div>
@@ -215,7 +217,7 @@
 
             <div>
                 <button type="submit" name="{Actions::REGISTER}" value="{translate key='Register'}"
-                        class="btn btn-primary col-xs-12" id="btnUpdate">{translate key='Register'}</button>
+                        class="btn btn-danger col-xs-12" id="btnUpdate">{translate key='Register'}</button>
             </div>
         </form>
     </div>
@@ -226,6 +228,7 @@
     {jsfile src="ajax-helpers.js"}
     {jsfile src="autocomplete.js"}
     {jsfile src="registration.js"}
+    {jsfile src="../../custom/js.js"}
 
     <script type="text/javascript">
 

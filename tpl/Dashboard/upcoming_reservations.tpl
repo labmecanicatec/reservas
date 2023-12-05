@@ -1,4 +1,4 @@
-<div class="dashboard upcomingReservationsDashboard" id="upcomingReservationsDashboard">
+{*<div class="dashboard upcomingReservationsDashboard" id="upcomingReservationsDashboard">
 	<div class="dashboardHeader">
 		<div class="pull-left">{translate key="UpcomingReservations"} <span class="badge">{$Total}</span></div>
 		<div class="pull-right">
@@ -54,5 +54,6 @@
     {*<form id="form-checkout" method="post" action="ajax/reservation_checkin.php?action={ReservationAction::Checkout}">*}
 		{*<input type="hidden" id="referenceNumber" {formname key=REFERENCE_NUMBER} />*}
 		{*{csrf_token}*}
-	{*</form>*}
+	{*</form>
 </div>
+*}

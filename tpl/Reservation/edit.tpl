@@ -13,7 +13,7 @@
     <div class="btn-group btnMore">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
         <span class="hidden-xs">{translate key=More} <span class="caret"></span></span>
-        <span class="visible-xs"><i class="fa fa-ellipsis-v"></i> <span class="caret"></span></span>
+        <span class="visible-xs"><i class="fa-solid fa-ellipsis-vertical"></i> <span class="caret"></span></span>
     </button>
     <ul class="dropdown-menu" role="menu">
         <li>
@@ -40,7 +40,7 @@
                 <span class="fa fa-print"></span>
                 {translate key='Print'}</a>
         </li>
-		<li>
+{*		<li>
             <a href="#" class="btnPDF">
                 <span class="fa fa-file-pdf-o"></span>
                 PDF</a>
@@ -67,7 +67,7 @@
             </a>
         {/if}
         </li>
-    </ul>
+*}    </ul>
 </div>
 
 
@@ -124,9 +124,13 @@
     </div>
 
 {else}
+    <button type="button" class="btn btn-warning triggerDeletePrompt delete prompt-single">
+        <i class="fa-solid fa-trash-can"></i>
+        {translate key='Delete'} Reserva
+    </button>
 
-    <button type="button" class="btn btn-success save update btnEdit">
-        <span class="glyphicon glyphicon-ok-circle"></span>
+    <button type="button" class="btn btn-primary save update btnEdit">
+        <i class="fa-solid fa-check"></i>
         {translate key='Update'}
     </button>
 {/if}

@@ -1,0 +1,429 @@
+:root {
+/* Rojo */
+  --color-principal: #8C1919; 
+  --color-secundario: #9a0a18; 
+  --color-dark: #373435;
+
+
+  --color-terciario: #b1beb5;
+  --color-amarillo: #FDB400;
+	
+  --color-menu: #c0c0c0;
+  --color-lineas: #a6a6a6;	
+}
+body{
+  font-family: 'Hind', sans-serif;
+  padding-top: 0;
+  color: #333;
+}
+#main {
+  min-height: auto;
+}
+#encabezado{
+  font-family: 'Titillium Web', sans-serif; /*Lora*/
+  font-size: 14px;
+  background-color: #192129;
+  color: #fff;
+  padding: 12px 0px 12px 0px;
+}
+#textoSup, #textoSup:hover{
+  color: #fff;
+  padding: 0 0 0 16px;
+}
+#encabezado2{
+  font-weight: 300;
+  font-size: 17px;
+  background-color: #fff;
+  color: #fff;
+  align-content: right;
+}
+img.logo {
+  max-height: 81px;
+  margin: 4px 0 0 0;
+}
+
+.contenedor {
+  width : auto;
+  display : flex;
+  align-items : center;
+  justify-content : start;
+  padding : 0px 10px;
+}
+.contenedor-body {
+  display : flex;
+  flex-direction : column;
+  height : 100%;
+  flex : 1;
+  margin-left : 5px;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 18px;
+  color: #000;
+  padding: 10px 5px 10px 5px;
+  border-left: solid 1px #b5b4b4;
+}
+.contenedor-body>a:hover{
+  color: #000;
+}
+#menu2{
+  text-align: right;
+  position:relative;
+  overflow:hidden;
+  background-image: url(https://www.udistrital.edu.co/themes/custom/versh/images/tema/bgnavnegra.png);
+  background-position: left !important;
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: auto;
+  float: right;
+  color: #fff;
+  padding: 7px 15px 7px 32px;
+}
+#menu:before.span.a{
+  z-index: 9999;
+}
+.navbar{
+  border-radius: 0; 
+}
+.navbar-default {
+  background-color: var(--color-principal);
+  border: none;
+  font-family: 'Hind', sans-serif;
+  font-size: 16px;
+
+}
+.navbar-header{
+  width: 100%;
+  background-color: #fff;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: #fff!important;
+  background-color: transparent!important;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+.navbar-nav{
+  float:none;
+  margin: 0 auto;
+  display: table;
+  table-layout: fixed;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+background-color: var(--color-principal);
+ color: #ffffff;
+}
+.icono::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.slash::before {
+  font-family: "Font Awesome 6 Free"; font-weight: 900; content: "\f715";
+  transform: rotate(90deg);
+  color: var(--color-amarillo);
+}
+.dashboardHeader {
+  background-color: var(--color-dark);
+}
+.dashboardHeader .badge {
+  background-color: var(--color-principal);
+}
+.panel-danger {
+  border-color: var(--color-dark);
+}
+.panel-danger>.panel-heading {
+  color: #ffffff;
+  background-color: var(--color-dark);
+  border-color: var(--color-dark);
+}
+#link_blanco, #link_blanco:visited {
+  color: #ffffff;
+}
+#link_blanco {
+  float: right;
+  color: #ffffff;
+  font-size: 90%;
+  position: relative;
+  top: -10px;
+  padding-right: 15px;
+}
+.btn-primary, .btn-primary:focus, .btn-primary[disabled]{
+  background-color: var(--color-dark);
+  border-color: var(--color-dark);
+}
+.btn-primary:hover {
+  background-color: #272526;
+  border-color: #272526;
+  color: #fff;
+  transition: all 300ms linear;
+}
+#link_boton, #link_boton:visited{
+  color: #fff;
+}
+a, a:visited {
+  color: #333;
+}
+a:focus, a:hover {
+  color: var(--color-principal);
+  text-decoration: none;
+}
+#link_texto{
+  color: black;
+  text-decoration: underline;
+}
+/* Horarios
+__________   */
+
+.reserved.pending {
+  background-color: #999966 !important;
+  color: white !important;
+}
+
+div.legend {
+border: solid var(--color-lineas) 1px;
+}
+
+td.resourcename a {
+  color: #404040 !important;
+  text-decoration: none;
+}
+
+table.reservations td {
+   border: solid var(--color-lineas) 1px !important; 
+}
+
+td.resdate {
+  background-color: var(--color-terciario) !important; 
+  color: #F0F0F0 !important;
+}
+
+tr.today td.resdate, td.today {
+  background-color: var(--color-principal) !important;
+  color: #F0F0F0 !important;
+}
+
+.unreservable {
+  background-color: #a6a6a6 !important;
+  color: #ffffff !important;
+}
+
+.reserved.hilite {
+  background-color: var(--color-terciario) !important;
+}
+
+.reservable.hilite,
+#reservations .ui-selecting {
+background-color: var(--color-terciario) !important;
+}
+
+.past {
+  opacity: 1;
+}
+
+.event {
+  border-right: solid 1px var(--color-lineas)!important;
+  border-bottom: solid 1px var(--color-lineas)!important;
+  padding: 5px;
+  color: #ffffff!important;
+}
+
+.event, .buffer{
+  border-top: solid 1px var(--color-lineas)!important;
+  border-left: solid 1px var(--color-lineas)!important
+}
+#icon {
+  color: #595959;
+}
+#titulo{
+  font-family: 'Titillium Web';
+  text-align: center;
+}
+
+/* TIMER 
+-------------------------------------------------*/
+#counter {
+  margin-top: 28px;
+}
+
+.countdown_section {
+  color: var(--color-dark);
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  width: 24%;
+  letter-spacing: 1px;
+  border-left: 1px dashed #dadada;
+  border-color: var(--color-dark);
+  padding: 42px 12px 28px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-shadow: 2px 2px 2px rgba(150,150,150,1);
+  text-transform: uppercase;
+}
+
+.countdown_section:first-child {
+  border-left: 0;
+
+}
+
+.countdown_amount {
+  color: var(--color-dark);
+  display: block;
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1;
+}
+footer{
+  font-family: 'Lora', sans-serif;
+  color: #fff;
+}
+#imagen_footer{
+  background-image: url(https://www.udistrital.edu.co/themes/custom/versh/images/tema/linea-footer.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 90% auto;
+  height: 30px;
+}
+#footer-fondo{
+  background-image: url(https://www.udistrital.edu.co/themes/custom/versh/images/tema/footerbg.png);
+  padding-bottom: 15px;
+}
+hr.piedepagina {
+  background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+  border: 0 none;
+  height: 1px;
+  margin: 22px 0;
+  min-height: 1px;
+}
+hr.piedepaginarojocorto {
+  background-color: var(--color-amarillo);
+  border: 0 none;
+  height: 1px;
+  margin: 0px 0;
+  min-height: 1px;
+  max-width: 30px;
+}
+
+hr.piedepaginarojolargo {
+  background-color: var(--color-amarillo);
+  border: 0 none;
+  height: 1px;
+  margin: 3px 0;
+  min-height: 1px;
+  max-width: 90px;
+}
+#footer-fondo, #footer-fondo a:hover{
+  color: #fff;
+}
+#footer-fondo-oscuro{
+  background-color: #222222;
+  font-size: 12px;
+}
+#navlist li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+#link_pie, #link_pie:hover{
+color: #fff;
+}
+
+/* Slider */
+
+@keyframes scroll {
+  0% {
+      transform: translateX(0);
+ }
+  100% {
+      transform: translateX(calc(-250px * 7));
+ }
+}
+.slider {
+  background: rgba(0, 0, 0, 0.75);
+  height: 80px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.slider::before, .slider::after {
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+  background-color: transparent!important;
+}
+.slider .slide-track {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  width: calc(250px * 14);
+}
+.slider .slide {
+  height: 100px;
+  width: 250px;
+}
+
+#page-login .login-icon img {
+  max-width: 50%;
+}
+
+.g-recaptcha {
+  display: inline-block;
+}
+
+@media screen and (max-width: 576px) {    
+  #textoSup{
+      font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #dependencia {
+    font-size: 12px;
+    padding: 6px 5px 6px 5px;
+  }
+  img.logo {
+      max-height: 70px;
+  }
+  .info-servicios>.card {
+      min-height: 15em;
+  }
+  .navbar-nav>li{
+    border-bottom: 1px solid #2A2A2A;    
+  }
+  .navbar-nav{
+    width: 100%;
+  margin: 0 0!important;
+  }
+}
+@media screen and (max-width: 1145px) {
+  #menu2{
+      display: none;
+  }
+}
+@media (min-width: 768px){
+  .navbar-nav>li>a {
+      padding-top: 12px;
+      padding-bottom: 12px;
+  }
+}
+@media (max-width: 767px){
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #fff;
+  }
+}

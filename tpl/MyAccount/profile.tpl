@@ -22,7 +22,7 @@
               data-bv-onsuccess="enableButton"
               data-bv-live="enabled">
 
-            <h1>{translate key=EditProfile}</h1>
+            <h1 id="titulo">{translate key=EditProfile}</h1>
 
             <div class="validationSummary alert alert-danger no-show" id="validationErrors">
                 <ul>
@@ -44,9 +44,11 @@
                     <div class="form-group">
                         <label class="reg" for="username">{translate key="Username"}</label>
                         {if $AllowUsernameChange}
-                            {textbox name="USERNAME" value="Username" required="required"
+                            {textbox name="USERNAME" id="codigo" value="Username" required="required"
                             data-bv-notempty="true" autofocus="autofocus"
-                            data-bv-notempty-message="{translate key=UserNameRequired}"}
+                            data-bv-notempty-message="{translate key=UserNameRequired}"
+                            onKeyPress="return acceptNum(event);maximo()" 
+							onblur="obtnercarrera(event);validarCodigo()"}
                         {else}
                             <span>{$Username}</span>
                             <input type="hidden" {formname key=USERNAME} value="{$Username}"/>
@@ -99,7 +101,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div style="display:none;" class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
                         <label class="reg" for="homepage">{translate key="DefaultPage"}</label>
@@ -141,7 +143,7 @@
                         <label class="reg" for="txtOrganization">{translate key="Organization"}</label>
                         {if $AllowOrganizationChange}
                             <input type="text" id="txtOrganization" {formname key="ORGANIZATION"} class="form-control"
-                                   size="20" value="{$Organization}"
+                                   size="20" value="{$Organization}" readonly="true"
                                     {if $RequireOrganization}required="required"
                                         data-bv-notempty="true"
                                         data-bv-notempty-message="{translate key=OrganizationRequired}"{/if}/>
@@ -154,7 +156,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-6">
+                <div style="display:none;" class="col-xs-12 col-sm-6">
                     <div class="form-group">
                         <label class="reg" for="txtPosition">{translate key="Position"}</label>
                         {if $AllowPositionChange}
@@ -205,6 +207,7 @@
     {jsfile src="ajax-helpers.js"}
     {jsfile src="autocomplete.js"}
     {jsfile src="profile.js"}
+    {jsfile src="../../custom/js.js"}
 
     <script type="text/javascript">
 
