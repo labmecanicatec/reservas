@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" media="all">
     <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
-
     <!-- JavaScript -->
     <script src="https://kit.fontawesome.com/ff9ce5127a.js" crossorigin="anonymous"></script>
     {if isset($UseLocalJquery) && $UseLocalJquery}
@@ -128,7 +127,6 @@
             <span class="mx-3"><a id="textoSup" href="https://reclamos.udistrital.edu.co/participa"><i class="fa fa-check-double" aria-hidden="true"></i> Participa</a> </span>
         </div>
     </div>
-    
     <nav class="navbar navbar-default" id="mNavbar" role="navigation">
         <div>
             <div class="navbar-header">
@@ -149,22 +147,20 @@
                     <span id="menu2">
                         <a id="textoSup" href="http://autoevaluacionyacreditacion.udistrital.edu.co/" class="mx-2">Aseguramiento de la calidad</a>
                         <a id="textoSup" href="http://idexud.udistrital.edu.co/" class="mx-2">Instituto de Extensión</a>
-                        <a id="textoSup" href="https://ceri.udistrital.edu.co/" class="mx-2">Interinstitucional</a>
+                        <a id="textoSup" href="https://urelinter.udistrital.edu.co/" class="mx-2">Internacionalización</a>
                         <a id="textoSup" href="https://moodleilud.udistrital.edu.co/" class="mx-2">Instituto de idiomas</a>
                     </span>
                 </span>
-
             </div>
             <div class="collapse navbar-collapse" id="booked-navigation">
                 <ul class="nav navbar-nav text-uppercase">
-                    <li><a class="icono slash" href="../../adminlab">{translate key = "BeginDate"}</a></li>
+                    <li><a class="icono slash" href="https://rita.udistrital.edu.co:23604/adminlab/">{translate key = "BeginDate"}</a></li>
                     <li><a class="icono slash" href="https://rita.udistrital.edu.co:23604/adminlab/recursos/">{translate key = "Recursos"}</a></li>
                     <li><a class="icono slash" href="https://rita.udistrital.edu.co:23604/adminlab/pazysalvos">{translate key = "PazSalvo"}</a></li>
                     {if isset($LoggedIn) && $LoggedIn}
                         <li id="navDashboard"><a class="icono slash" href="{$Path}{Pages::DASHBOARD}">{translate key="Dashboard"}</a></li>
                         <li id="navBookings"><a class="icono slash" href="{$Path}{Pages::SCHEDULE}">{translate key="Bookings"}</a></li>
-{*
-                        <li class="dropdown" id="navMyAccountDropdown">
+{*                        <li class="dropdown" id="navMyAccountDropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{translate key="MyAccount"} <b
                                         class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -203,10 +199,10 @@
                                             href="{$Path}{Pages::SEARCH_RESERVATIONS}">{translate key="SearchReservations"}</a>
                                 </li>
                             </ul>
-                        </li>
- *}                       {if isset($CanViewAdmin) && $CanViewAdmin}
+                        </li> *}
+                        {if isset($CanViewAdmin) && $CanViewAdmin}
                             <li class="dropdown" id="navApplicationManagementDropdown">
-                                <a  class="icono slash" href="#" class="dropdown-toggle"
+                                <a class="icono slash" href="#" class="dropdown-toggle"
                                    data-toggle="dropdown">{translate key="ApplicationManagement"}
                                     <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -255,7 +251,7 @@
                         {/if}
                         {if isset($CanViewResponsibilities) && $CanViewResponsibilities}
                             <li class="dropdown" id="navResponsibilitiesDropdown">
-                                <a href="#" class="dropdown-toggle"
+                                <a class="icono slash" href="#" class="dropdown-toggle"
                                    data-toggle="dropdown">{translate key="Responsibilities"} <b
                                             class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -314,9 +310,9 @@
                                 </ul>
                             </li>
                         {/if}
-  *}                  {/if}
-{*
-                </ul>
+*}                    {/if}
+
+{*                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {if isset($ShowScheduleLink) && $ShowScheduleLink}
                         <li class="dropdown" id="navScheduleDropdown">
@@ -330,7 +326,7 @@
                             </ul>
                         </li>
                     {/if}
-  *}                  {if isset($CanViewAdmin) && $CanViewAdmin}
+*}                    {if isset($CanViewAdmin) && $CanViewAdmin}
                         <li class="dropdown" id="navHelpDropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="no-show">Configuration</span>
@@ -379,34 +375,9 @@
                         </ul>
                     </li>
 *}                    {if isset($LoggedIn) && $LoggedIn}
-                        <li class="dropdown" id="navMyAccountDropdown">
-                        <a style="text-transform: uppercase;" href="#" class="dropdown-toggle icono slash" data-toggle="dropdown">{$UserName} <b
-                                    class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li id="navProfile"><a href="{$Path}{Pages::PROFILE}">{translate key="Profile"}</a></li>
-                            <li id="navPassword"><a
-                                        href="{$Path}{Pages::PASSWORD}">{translate key="ChangePassword"}</a></li>
-                            <!--li id="navNotification">
-                                <a href="{$Path}{Pages::NOTIFICATION_PREFERENCES}">{translate key="NotificationPreferences"}</a>
-                            </li-->
-                            <li class="divider"></li>
-                            <li id="navSignOut"><a href="{$Path}logout.php">{translate key="SignOut"} sesión</a></li>
-
-                            {if $ShowParticipation}
-                                <li id="navInvitations">
-                                    <a href="{$Path}{Pages::PARTICIPATION}">{translate key="OpenInvitations"}</a>
-                                </li>
-                            {/if}
-                            {if $CreditsEnabled}
-                                <li id="navUserCredits">
-                                    <a href="{$Path}{Pages::CREDITS}">{translate key="Credits"}</a>
-                                </li>
-                            {/if}
-                        </ul>
-                    </li>
-
+                        <li><a class="icono slash" href="{$Path}logout.php">{translate key="SignOut"}</a></li>
                     {else}
-                    <li id="navLogIn"><a href="{$Path}index.php" class="icono slash">{translate key="LogIn"}</a></li>
+                        <li><a class="icono slash" href="{$Path}index.php">{translate key="LogIn"}</a></li>
                     {/if}
                 </ul>
             </div>

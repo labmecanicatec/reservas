@@ -163,7 +163,7 @@
                     <div class="inline">
                         <a href="#" class="update delete">
                             <span class="no-show">{translate key=Delete}</span>
-                            <span class="fa fa-trash icon remove"></span>
+                            <span class="fas fa-trash icon remove"></span>
                         </a>
                     </div>
                 </td>
