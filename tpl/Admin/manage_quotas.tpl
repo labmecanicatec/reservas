@@ -206,7 +206,7 @@
 				<div class="quotaItem {$rowCss}">
 					{translate key=QuotaConfiguration args="$scheduleName,$resourceName,$groupName,$amount,$unit,$duration"} <span class="bold">{$scope}</span>.
 					{translate key=QuotaEnforcement args="$enforceHours,$enforceDays"}
-					<a href="#" quotaId="{$quota->Id}" class="delete pull-right"><span class="fa fa-trash icon remove"></span></a>
+					<a href="#" quotaId="{$quota->Id}" class="delete pull-right"><span class="fas fa-trash icon remove"></span></a>
 				</div>
 				{foreachelse}
 				{translate key=None}

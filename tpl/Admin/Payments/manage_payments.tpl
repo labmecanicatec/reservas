@@ -90,7 +90,7 @@
                                 <input type="hidden" {formname key=CREDIT_COUNT} value="{$credit->Count()}"/>
                                 <button type="submit" style="border: 0; padding: 0">
                                   <span class="no-show">{translate key=Delete}</span>
-                                  <span class="fa fa-trash icon remove"></span>
+                                  <span class="fas fa-trash icon remove"></span>
                                 </button>
                                 {indicator id="deleteCreditsIndicator"}
                           </form>

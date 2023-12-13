@@ -13,7 +13,7 @@
 			{assign var=value value={formatdate date=$value key=fullcalendar}}
 		{/if}
 		<h5 class="inline">{$attribute->Label()}</h5>
-        <a class="update changeAttribute" href="#"><span class="fa fa-pencil-square-o"></span><span class="no-show">{translate key=Edit}</span></a>
+        <a class="update changeAttribute" href="#"><span class="fas fa-pencil-square-o"></span><span class="no-show">{translate key=Edit}</span></a>
 		<span class="inlineAttribute"
 			  id="inline{$attributeId}"
 			  data-type="{$datatype}"

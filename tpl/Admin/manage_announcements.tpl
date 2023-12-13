@@ -97,11 +97,11 @@
 				<td class="announcementResources">{foreach from=$announcement->ResourceIds() item=resourceId}{$Resources[$resourceId]->GetName()} {/foreach}</td>
 				<td class="announcementDisplayPage">{translate key={Pages::NameFromId($announcement->DisplayPage())}}</td>
 				<td class="action announcementActions">
-					<a href="#" title="{translate key=Edit}" class="update edit"><span class="fa fa-pencil-square-o icon"></a> |
+					<a href="#" title="{translate key=Edit}" class="update edit"><span class="fas fa-pencil-square-o icon"></a> |
 					{if $announcement->CanEmail()}
                     <a href="#" title="{translate key=Email}" class="update sendEmail"><span class="fa fa-envelope-o icon"></a> |
                     {/if}
-                    <a href="#" title="{translate key=Delete}" class="update delete"><span class="fa fa-trash icon remove"></span></a>
+                    <a href="#" title="{translate key=Delete}" class="update delete"><span class="fas fa-trash icon remove"></span></a>
 				</td>
 			</tr>
 		{/foreach}

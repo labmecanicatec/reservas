@@ -69,7 +69,7 @@
 				<td class="action">
 					<a href="#" class="update delete" attributeId="{$attribute->Id()}">
                         <span class="no-show">{translate key=Remove}</span>
-                        <span class="fa fa-trash icon remove"></span>
+                        <span class="fas fa-trash icon remove"></span>
                     </a>
 				</td>
 			</tr>

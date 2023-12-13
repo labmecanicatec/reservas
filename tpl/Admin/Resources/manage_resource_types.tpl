@@ -51,8 +51,8 @@
 				<td>{$type->Name()}</td>
 				<td>{$type->Description()|nl2br}</td>
 				<td class="action">
-					<a href="#" class="update edit"><span class="fa fa-pencil-square-o icon"></a> |
-					<a href="#" class="update delete"><span class="fa fa-trash icon remove"></span></a>
+					<a href="#" class="update edit"><span class="fas fa-pencil-square-o icon"></a> |
+					<a href="#" class="update delete"><span class="fas fa-trash icon remove"></span></a>
 					<input type="hidden" class="id" value="{$id}"/>
 				</td>
 			</tr>

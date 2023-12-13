@@ -193,14 +193,14 @@
 								<a class="update renameButton" href="#" title="{translate key='Rename'}">
 									<span class="no-show">{translate key=Rename}</span>
 									<i
-											class="fa fa-pencil-square-o"></i></a> |
+											class="fas fa-pencil-square-o"></i></a> |
 								<a class="update copyButton" href="#" title="{translate key='Copy'}">
 									<span class="no-show">{translate key=Copy}</span>
 									<i
 											class="fa fa-copy"></i></a> |
 								<a class="update deleteButton" href="#" title="{translate key='Delete'}">
 									<span class="no-show">{translate key=Delete}</span>
-									<i class="fa fa-trash icon delete"></i>
+									<i class="fas fa-trash icon delete"></i>
 								</a>
 							</div>
 							<div>
@@ -246,7 +246,7 @@
 								</span>
 								<a class="update changeResourceType" href="#">
 									<span class="no-show">{translate key=ResourceType}</span>
-									<span class="fa fa-pencil-square-o"></span>
+									<span class="fas fa-pencil-square-o"></span>
 								</a>
 							</div>
 							<div>
@@ -257,7 +257,7 @@
 							</span>
 								<a class="update changeSortOrder" href="#">
 									<span class="no-show">{translate key=SortOrder}</span>
-									<span class="fa fa-pencil-square-o"></span>
+									<span class="fas fa-pencil-square-o"></span>
 								</a>
 							</div>
 							<div>
@@ -273,7 +273,7 @@
 							</span>
 								<a class="update changeLocation" href="#">
 									<span class="no-show">{translate key=Location}</span>
-									<span class="fa fa-pencil-square-o"></span>
+									<span class="fas fa-pencil-square-o"></span>
 								</a>
 							</div>
 							<div>
@@ -289,13 +289,13 @@
 							</span>
 								<a class="update changeContact" href="#">
 									<span class="no-show">{translate key=Contact}</span>
-									<span class="fa fa-pencil-square-o"></span></a>
+									<span class="fas fa-pencil-square-o"></span></a>
 							</div>
 							<div>
                                 {translate key='Description'} <a class="update changeDescription" href="#">
 									<span class="no-show">{translate key=Description}</span>
 									<span
-											class="fa fa-pencil-square-o"></span></a>
+											class="fas fa-pencil-square-o"></span></a>
                                 {if $resource->HasDescription()}
                                     {assign var=description value=$resource->GetDescription()}
                                 {else}
@@ -316,7 +316,7 @@
 							<div>
                                 {translate key='Notes'} <a class="update changeNotes" href="#">
 									<span class="no-show">{translate key=Notes}</span>
-									<span class="fa fa-pencil-square-o"></span>
+									<span class="fas fa-pencil-square-o"></span>
 								</a>
                                 {if $resource->HasNotes()}
                                     {assign var=notes value=$resource->GetNotes()}
@@ -343,7 +343,7 @@
                                 {if $AdminGroups|default:array()|count > 0}
 									<a class="update changeResourceAdmin" href="#">
 										<span class="no-show">{translate key=ResourceAdministrator}</span>
-										<span class="fa fa-pencil-square-o"></span></a>
+										<span class="fas fa-pencil-square-o"></span></a>
                                 {/if}
 							</div>
 							<div>
@@ -358,7 +358,7 @@
 							<h5 class="inline">{translate key=Duration}</h5>
 							<a href="#" class="inline update changeDuration">
 								<span class="no-show">{translate key=Duration}</span>
-								<span class="fa fa-pencil-square-o"></span>
+								<span class="fas fa-pencil-square-o"></span>
 							</a>
 
 							<div class="durationPlaceHolder">
@@ -370,7 +370,7 @@
 									<h5 class="inline">{translate key='Credits'}</h5>
 									<a href="#" class="inline update changeCredits">
 										<span class="no-show">{translate key=Credits}</span>
-										<span class="fa fa-pencil-square-o"></span>
+										<span class="fas fa-pencil-square-o"></span>
 									</a>
 									<div class="creditsPlaceHolder">
                                         {include file="Admin/Resources/manage_resources_credits.tpl" resource=$resource}
@@ -382,7 +382,7 @@
 								<h5 class="inline">{translate key='Capacity'}</h5>
 								<a href="#" class="inline update changeCapacity">
 									<span class="no-show">{translate key=Capacity}</span>
-									<span class="fa fa-pencil-square-o"></span>
+									<span class="fas fa-pencil-square-o"></span>
 								</a>
 
 								<div class="capacityPlaceHolder">
@@ -395,7 +395,7 @@
 							<h5 class="inline">{translate key=Access}</h5>
 							<a href="#" class="inline update changeAccess">
 								<span class="no-show">{translate key=Access}</span>
-								<span class="fa fa-pencil-square-o"></span>
+								<span class="fas fa-pencil-square-o"></span>
 							</a>
 
 							<div class="accessPlaceHolder">
@@ -413,7 +413,7 @@
 							<h5 class="inline">{translate key='ResourceGroups'}</h5>
 							<a href="#" class="inline update changeResourceGroups">
 								<span class="no-show">{translate key=ResourceGroups}</span>
-								<span class="fa fa-pencil-square-o"></span>
+								<span class="fas fa-pencil-square-o"></span>
 							</a>
 
 							<div class="resourceGroupsPlaceHolder">

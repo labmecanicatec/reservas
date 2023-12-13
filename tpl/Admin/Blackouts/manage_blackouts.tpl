@@ -162,11 +162,11 @@
 				<td class="update edit"><a href="#"><span class="fa fa-edit"></span></a></td>
 				{if $blackout->IsRecurring}
 					<td class="update">
-						<a href="#" class="update delete-recurring"><span class="fa fa-trash icon remove"></span></a>
+						<a href="#" class="update delete-recurring"><span class="fas fa-trash icon remove"></span></a>
 					</td>
 				{else}
 					<td class="update">
-						<a href="#" class="update delete"><span class="fa fa-trash icon remove"></span></a>
+						<a href="#" class="update delete"><span class="fas fa-trash icon remove"></span></a>
 					</td>
 				{/if}
 				<td class="action-delete">
@@ -183,7 +183,7 @@
 		<tfoot>
 		<tr>
 			<td colspan="7"></td>
-			<td class="action-delete"><a href="#" id="delete-selected" class="no-show" title="{translate key=Delete}">{translate key=Delete}<span class="fa fa-trash icon remove"></span></a></td>
+			<td class="action-delete"><a href="#" id="delete-selected" class="no-show" title="{translate key=Delete}">{translate key=Delete}<span class="fas fa-trash icon remove"></span></a></td>
 		</tr>
 		</tfoot>
 	</table>

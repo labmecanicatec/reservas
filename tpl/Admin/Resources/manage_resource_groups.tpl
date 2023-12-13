@@ -14,7 +14,7 @@
                     <input type="text" name="{FormKeys::GROUP_NAME}" class="form-control new-group inline" size="30"
 					   id="groupName" placeholder="{translate key=AddNewGroup}"/>
 				<input type="hidden" name="{FormKeys::PARENT_ID}"/>
-				<a href="#" class="fa fa-plus-circle icon add inline" id="btnAddGroup"><span class="no-show">{translate key=Add}</span></a>
+				<a href="#" class="fas fa-plus-circle icon add inline" id="btnAddGroup"><span class="no-show">{translate key=Add}</span></a>
 				</div>
 			</form>
 		</div>

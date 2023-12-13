@@ -40,7 +40,7 @@
                     <td style="background-color:{$rule->Color}">&nbsp;</td>
                     <td class="action">
                         <a href="#" class="update delete" ruleId="{$rule->Id}"><span
-                                    class="fa fa-trash icon remove fa-1x"></span></a>
+                                    class="fas fa-trash icon remove fa-1x"></span></a>
                     </td>
                 </tr>
             {/foreach}

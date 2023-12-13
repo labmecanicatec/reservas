@@ -54,10 +54,10 @@
 				<td class="action">
 					<a href="#" class="update edit"><span class="no-show"></span>
                         <span class="no-show">{translate key=Edit}</span>
-                        <span class="fa fa-pencil-square-o icon"></a> |
+                        <span class="fas fa-pencil-square-o icon"></a> |
 					<a href="#" class="update delete">
                         <span class="no-show">{translate key=Delete}</span>
-                        <span class="fa fa-trash icon remove"></span></a>
+                        <span class="fas fa-trash icon remove"></span></a>
 				</td>
 			</tr>
 		{/foreach}

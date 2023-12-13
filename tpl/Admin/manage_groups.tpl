@@ -106,8 +106,8 @@
                         <span class="fa fa-circle-o"></span>
                     {/if}</td>
                 <td class="action">
-                    <a href="#" class="update rename"><span class="fa fa-pencil-square-o icon"></a> |
-                    <a href="#" class="update delete"><span class="fa fa-trash icon remove"></span></a>
+                    <a href="#" class="update rename"><span class="fas fa-pencil-square-o icon"></a> |
+                    <a href="#" class="update delete"><span class="fas fa-trash icon remove"></span></a>
                 </td>
             </tr>
         {/foreach}

@@ -206,7 +206,7 @@
 				{/if}
 				{if !$IsDesktop}
 					<td class="action">
-						<a href="#" class="update edit"><span class="fa fa-pencil icon fa-1x"></span></a>
+						<a href="#" class="update edit"><span class="fas fa-pencil icon fa-1x"></span></a>
 					</td>
 				{/if}
 				<td class="action">
@@ -218,7 +218,7 @@
 				</td>
 				<td class="action">
 					<a href="#" class="update delete">
-                        <span class="fa fa-trash icon remove fa-1x"></span>
+                        <span class="fas fa-trash icon remove fa-1x"></span>
                         <span class="no-show">{translate key=Delete}</span>
                     </a>
 				</td>
@@ -271,7 +271,7 @@
 			<td colspan="{$colCount-1}"></td>
 			<td class="action-delete">
                 <a href="#" id="delete-selected" class="no-show" title="{translate key=Delete}">
-                    <span class="fa fa-trash icon remove"></span>
+                    <span class="fas fa-trash icon remove"></span>
                     <span class="no-show">{translate key=Delete}</span>
                 </a>
             </td>
